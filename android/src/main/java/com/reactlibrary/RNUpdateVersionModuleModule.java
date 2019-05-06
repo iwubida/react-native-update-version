@@ -1,6 +1,8 @@
 
 package com.reactlibrary;
 
+import android.util.Log;
+
 import com.facebook.react.bridge.Arguments;
 import com.facebook.react.bridge.ReactApplicationContext;
 import com.facebook.react.bridge.ReactContextBaseJavaModule;
@@ -14,6 +16,7 @@ import com.facebook.react.bridge.WritableMap;
 import com.facebook.react.modules.core.DeviceEventManagerModule;
 
 import java.io.File;
+import com.reactlibrary.R;
 
 
 public class RNUpdateVersionModuleModule extends ReactContextBaseJavaModule {
@@ -38,10 +41,11 @@ public class RNUpdateVersionModuleModule extends ReactContextBaseJavaModule {
     DownloadManager manager = DownloadManager.getInstance(getCurrentActivity());
     // 下载配置
     UpdateConfiguration configuration = new UpdateConfiguration();
+    configuration.setShowBgdToast(false);
     configuration.setOnDownloadListener(new OnDownloadListener() {
       @Override
       public void start() {
-
+        Log.i("UPDATEVERSION", "start");
       }
 
       @Override
@@ -81,9 +85,9 @@ public class RNUpdateVersionModuleModule extends ReactContextBaseJavaModule {
       }
     });
 
-    manager.setApkName("wingshop.apk")
+    manager.setApkName("update.apk")
             .setApkUrl(url)
-          //.setSmallIcon(R.mipmap.ic_launcher)
+            .setSmallIcon(R.mipmap.ic_update)
             .setConfiguration(configuration)
             .download();
   }
