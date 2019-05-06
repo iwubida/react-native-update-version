@@ -1,33 +1,39 @@
-// Top-level build file where you can add configuration options common to all sub-projects/modules.
+def safeExtGet(prop, fallback) {
+    rootProject.ext.has(prop) ? rootProject.ext.get(prop) : fallback
+}
 
 buildscript {
-    ext {
-        buildToolsVersion = "28.0.3"
-        minSdkVersion = 16
-        compileSdkVersion = 28
-        targetSdkVersion = 28
-        supportLibVersion = "28.0.0"
-    }
     repositories {
-        google()
         jcenter()
     }
+
     dependencies {
-        classpath 'com.android.tools.build:gradle:3.3.1'
-
-        // NOTE: Do not place your application dependencies here; they belong
-        // in the individual module build.gradle files
+        classpath 'com.android.tools.build:gradle:1.5.0'
     }
 }
 
-allprojects {
-    repositories {
-        mavenLocal()
-        google()
-        jcenter()
-        maven {
-            // All of React Native (JS, Obj-C sources, Android binaries) is installed from npm
-            url "$rootDir/../node_modules/react-native/android"
-        }
+apply plugin: 'com.android.library'
+
+android {
+    compileSdkVersion safeExtGet('compileSdkVersion', 26)
+    buildToolsVersion safeExtGet('buildToolsVersion', '26.0.3')
+
+    defaultConfig {
+        minSdkVersion safeExtGet('minSdkVersion', 16)
+        targetSdkVersion safeExtGet('targetSdkVersion', 26)
+        versionCode 1
+        versionName "1.0"
+    }
+    lintOptions {
+        abortOnError false
     }
 }
+
+dependencies {
+    implementation 'com.facebook.react:react-native:+'
+    implementation 'com.azhon:appupdate:2.1.0'
+}
+
+
+
+
