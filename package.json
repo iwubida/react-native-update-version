@@ -4,7 +4,12 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start": "node node_modules/react-native/local-cli/cli.js start",
+    "test": "jest",
+    "lint": "eslint --ext .js src",
+    "lint:fix": "eslint --fix --ext .js src",
+    "lint-staged": "lint-staged",
+    "lint-staged:js": "eslint --fix --ext .js"
   },
   "keywords": [
     "react-native"
@@ -13,5 +18,53 @@
   "license": "",
   "peerDependencies": {
     "react-native": "^0.41.2"
-  }
+  },
+  "devDependencies": {
+    "@babel/core": "^7.4.4",
+    "@babel/runtime": "^7.4.4",
+    "babel-eslint": "^10.0.1",
+    "babel-jest": "^24.8.0",
+    "eslint": "^5.16.0",
+    "eslint-config-airbnb": "^17.1.0",
+    "eslint-config-prettier": "^4.2.0",
+    "eslint-plugin-compat": "^3.1.1",
+    "eslint-plugin-import": "^2.17.2",
+    "eslint-plugin-jsx-a11y": "^6.2.1",
+    "eslint-plugin-prettier": "^3.0.1",
+    "eslint-plugin-react": "^7.13.0",
+    "jest": "^24.8.0",
+    "metro-react-native-babel-preset": "^0.54.0",
+    "prettier": "^1.17.0",
+    "react": "^16.8.6",
+    "react-native": "^0.59.5",
+    "react-test-renderer": "^16.8.6"
+  },
+  "dependencies": {
+    "prop-types": "^15.7.2",
+    "react-native-extended-stylesheet": "^0.11.1",
+    "react-native-modal": "^10.0.0"
+  },
+  "jest": {
+    "preset": "react-native"
+  },
+  "lint-staged": {
+    "**/*.{js, json, md}": [
+      "prettier --write",
+      "git add"
+    ],
+    "**/*.{js, jsx}": [
+      "yarn lint-staged:js",
+      "git add"
+    ]
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "yarn lint-staged"
+    }
+  },
+  "browserslist": [
+    "> 1%",
+    "last 2 versions",
+    "not ie <= 11"
+  ]
 }
