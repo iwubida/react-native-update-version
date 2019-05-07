@@ -1,4 +1,3 @@
-
 # react-native-update-version-module
 
 ## Getting started
@@ -11,7 +10,6 @@
 
 ### Manual installation
 
-
 #### iOS
 
 1. In XCode, in the project navigator, right click `Libraries` ➜ `Add Files to [your project's name]`
@@ -22,32 +20,52 @@
 #### Android
 
 1. Open up `android/app/src/main/java/[...]/MainActivity.java`
-  - Add `import com.reactlibrary.RNUpdateVersionModulePackage;` to the imports at the top of the file
-  - Add `new RNUpdateVersionModulePackage()` to the list returned by the `getPackages()` method
+
+- Add `import com.reactlibrary.RNUpdateVersionModulePackage;` to the imports at the top of the file
+- Add `new RNUpdateVersionModulePackage()` to the list returned by the `getPackages()` method
+
 2. Append the following lines to `android/settings.gradle`:
-  	```
-  	include ':react-native-update-version-module'
-  	project(':react-native-update-version-module').projectDir = new File(rootProject.projectDir, 	'../node_modules/react-native-update-version-module/android')
-  	```
+   ```
+   include ':react-native-update-version-module'
+   project(':react-native-update-version-module').projectDir = new File(rootProject.projectDir, 	'../node_modules/react-native-update-version-module/android')
+   ```
 3. Insert the following lines inside the dependencies block in `android/app/build.gradle`:
-  	```
-      compile project(':react-native-update-version-module')
-  	```
-
-#### Windows
-[Read it! :D](https://github.com/ReactWindows/react-native)
-
-1. In Visual Studio add the `RNUpdateVersionModule.sln` in `node_modules/react-native-update-version-module/windows/RNUpdateVersionModule.sln` folder to their solution, reference from their app.
-2. Open up your `MainPage.cs` app
-  - Add `using Update.Version.Module.RNUpdateVersionModule;` to the usings at the top of the file
-  - Add `new RNUpdateVersionModulePackage()` to the `List<IReactPackage>` returned by the `Packages` method
-
+   ```
+     compile project(':react-native-update-version-module')
+   ```
 
 ## Usage
-```javascript
-import RNUpdateVersionModule from 'react-native-update-version-module';
 
-// TODO: What to do with the module?
-RNUpdateVersionModule;
+```javascript
+import RNUpdateVersionModule from 'react-native-update-version-module'
 ```
-  
+
+1. iOS
+
+```javascript
+// Go to appStroe
+RNUpdateVersionModule.update(`${appId}`)
+```
+
+2. Android
+
+```javascript
+// Download apk
+RNUpdateVersionModule.update(`${apkUrl}`)
+// Download Progress
+DeviceEventEmitter.addListener('DownloadApkProgress', arg => {
+  if (arg.error) {
+    console.log('下载失败')
+  } else if (arg.done) {
+    console.log('升级成功')
+  } else {
+    const percent = Math.floor((arg.current / arg.total) * 100) || 0
+    console.log(`${percent}%`)
+  }
+})
+
+componentWillUnmount() {
+  // RemoveListener
+	DeviceEventEmitter.removeListener('DownloadApkProgress');
+}
+```
