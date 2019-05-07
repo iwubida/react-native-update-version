@@ -1,7 +1,7 @@
 {
-  "name": "react-native-update-version-module",
+  "name": "@iwubida/react-native-update-version",
   "version": "0.0.1",
-  "description": "",
+  "description": "react-native Update Version",
   "main": "index.js",
   "scripts": {
     "start": "node node_modules/react-native/local-cli/cli.js start",
@@ -12,10 +12,11 @@
     "lint-staged:js": "eslint --fix --ext .js"
   },
   "keywords": [
-    "react-native"
+    "react-native",
+    "update-version"
   ],
   "author": "iwubida",
-  "license": "",
+  "license": "MIT",
   "peerDependencies": {
     "react-native": "^0.41.2"
   },
@@ -66,5 +67,13 @@
     "> 1%",
     "last 2 versions",
     "not ie <= 11"
-  ]
+  ],
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/iwubida/react-native-update-version.git"
+  },
+  "bugs": {
+    "url": "https://github.com/iwubida/react-native-update-version/issues"
+  },
+  "homepage": "https://github.com/iwubida/react-native-update-version#readme"
 }
