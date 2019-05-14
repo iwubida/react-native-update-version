@@ -3,7 +3,7 @@ import { Dimensions } from 'react-native';
 
 // style里面的尺寸大小都写与2倍图设计稿一样(以宽度750px为基础)，eg:设计稿为20px,style里面写20rem
 const entireScreenWidth = Dimensions.get('window').width;
-EStyleSheet.build({ $rem: entireScreenWidth / 750, ...variables });
+EStyleSheet.build({ $rem: entireScreenWidth / 750 });
 
 const styles = EStyleSheet.create({
   container: {
