@@ -35,7 +35,7 @@ const styles = EStyleSheet.create({
   },
   title: {
     fontSize: '42rem',
-    color: '$headingColor',
+    color: '#121212',
     fontWeight: '900'
   },
   version: {
@@ -52,7 +52,7 @@ const styles = EStyleSheet.create({
   },
   txt: {
     marginBottom: '6rem',
-    color: '$textColorSecondary',
+    color: '#999',
     fontSize: '27rem',
     lineHeight: '30rem',
     textAlign: 'center'
