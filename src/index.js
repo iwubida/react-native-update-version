@@ -55,7 +55,7 @@ const isAppStoreHasNewVersion = async appId => {
 
 class UpdateVersion extends PureComponent {
   static propTypes = {
-    version: PropTypes.string, // 内部版本号 12
+    version: PropTypes.oneOfType([PropTypes.string, PropTypes.number]), // 内部版本号 12
     versionCode: PropTypes.string, // 外部版本号 'v1.0.0'
     updateInfo: PropTypes.string, // 升级信息 '1、支持第三方平台业务|2、展示第三方平台订单取单编码'
     promote: PropTypes.number, // 更新方式(1升级，0不升级，2强制升级)
