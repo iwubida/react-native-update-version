@@ -1,5 +1,6 @@
 
 #import "RNUpdateVersionModule.h"
+#import <UIKit/UIKit.h>
 
 @implementation RNUpdateVersionModule
 
