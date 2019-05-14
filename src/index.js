@@ -21,8 +21,8 @@ const { RNUpdateVersionModule } = NativeModules;
 const currentVersion = VersionNumber.buildVersion; // 版本号
 const currentVersionCode = VersionNumber.appVersion; // 版本名称
 
-const bg = require('./image/pic.png');
-const closeIcon = require('./image/ic-close.png');
+const bg = require('./images/pic.png');
+const closeIcon = require('./images/ic-close.png');
 
 /**
  *  判断版本号格式是否正确
@@ -56,7 +56,7 @@ const isAppStoreHasNewVersion = async appId => {
 class UpdateVersion extends PureComponent {
   static propTypes = {
     version: PropTypes.string, // 内部版本号 12
-    versionCode: PropTypes.string, // 外部版本号 '1.0.0'
+    versionCode: PropTypes.string, // 外部版本号 'v1.0.0'
     updateInfo: PropTypes.string, // 升级信息 '1、支持第三方平台业务|2、展示第三方平台订单取单编码'
     promote: PropTypes.number, // 更新方式(1升级，0不升级，2强制升级)
     clientUrl: PropTypes.string, // 下载地址
