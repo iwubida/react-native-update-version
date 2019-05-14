@@ -2,7 +2,7 @@
   "name": "@iwubida/react-native-update-version",
   "version": "0.0.6",
   "description": "react-native Update Version",
-  "main": "index.js",
+  "main": "/src/index.js",
   "scripts": {
     "start": "node node_modules/react-native/local-cli/cli.js start",
     "test": "jest",
