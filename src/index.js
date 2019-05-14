@@ -13,7 +13,7 @@ import VersionNumber from 'react-native-version-number';
 import Modal from 'react-native-modal';
 import PropTypes from 'prop-types';
 import axios from 'axios';
-import styles from './style';
+import styles from './styles';
 
 const { RNUpdateVersionModule } = NativeModules;
 
