@@ -21,6 +21,9 @@ import com.reactlibrary.R;
 
 public class RNUpdateVersionModuleModule extends ReactContextBaseJavaModule {
 
+  // 上次进度
+  static int lastPercent = 0;
+
   private final ReactApplicationContext reactContext;
 
   public RNUpdateVersionModuleModule(ReactApplicationContext reactContext) {
@@ -54,8 +57,14 @@ public class RNUpdateVersionModuleModule extends ReactContextBaseJavaModule {
         params.putInt("total", max);
         params.putInt("current", progress);
 
-        reactContext.getJSModule(DeviceEventManagerModule.RCTDeviceEventEmitter.class)
-                .emit("DownloadApkProgress", params);
+        int percent = (int)(progress * 1.0 / max * 100);
+        params.putInt("percent", percent);
+
+        // 限制消息发送
+        if (lastPercent != percent) {
+          reactContext.getJSModule(DeviceEventManagerModule.RCTDeviceEventEmitter.class).emit("DownloadApkProgress", params);
+        }
+        lastPercent = percent;
       }
 
       @Override
