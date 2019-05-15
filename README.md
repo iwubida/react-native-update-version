@@ -1,12 +1,12 @@
 # @iwubida/react-native-update-version
 
-##### 支持App版本自动升级提醒和升级，提供可选的升级页面组件，同时支持Android和IOS。
+##### 支持App版本自动升级提醒和升级，提供可选的升级页面组件，同时支持Android和iOS。
 
 [![npm version](https://img.shields.io/npm/v/@iwubida/react-native-update-version.svg?style=flat)](https://www.npmjs.com/package/@iwubida/react-native-update-version)
 
 ## 例子：传入最新的`内部版本号`和`外部版本号`后该插件可以自动检测出该App是否需要弹出更新提示。
 
-- 可以选择使用该插件自带的样式组件(支持Android和IOS)
+- 可以选择使用该插件自带的样式组件(支持Android和iOS)
 
 <p float="left">
 
@@ -28,7 +28,7 @@
 
 </p>
 
-- IOS点击`立即升级`后，跳转App Store
+- iOS点击`立即升级`后，跳转App Store
 
 <img src="/images/ios-downloading.png" height="400px">
 
@@ -55,9 +55,9 @@ npm install @iwubida/react-native-update-version --save
 react-native link @iwubida/react-native-update-version
 ```
 
-手动配置
+手动配置`(不推荐)`
 
-##### ios
+##### iOS
 
   1. In XCode, in the project navigator, right click `Libraries` ➜ `Add Files to [your project's name]`
   2. Go to `node_modules` ➜ `react-native-update-version-module` and add `RNUpdateVersionModule.xcodeproj`
@@ -83,7 +83,24 @@ react-native link @iwubida/react-native-update-version
 
 ## 使用
 
-#### 不使用升级页面组件
+#### 使用提供的升级页面组件
+
+```javascript
+import UpdateVersion from '@iwubida/react-native-update-version';
+
+const Demo = ({appId, version, versionCode, promote, clientUrl, updateInfo}) => (
+  <UpdateVersion
+    appId={appId}
+    version={version}
+    versionCode={versionCode}
+    promote={promote}
+    clientUrl={clientUrl}
+    updateInfo={updateInfo}
+  />
+);
+```
+
+#### 不使用提供的升级页面组件，要自己写页面组件的，👇下面方法可提供下载过程。
 
 ```javascript
 import { NativeModules } from 'react-native';
