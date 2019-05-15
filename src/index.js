@@ -73,7 +73,7 @@ class UpdateVersion extends PureComponent {
 
   state = {
     status: 'unDownloading', // 状态 'unDownloading' 没在下载中 'downloading'下载中'
-    isVisible: true, // 是否显示modal
+    isVisible: false, // 是否显示modal
     title: '升级到新版本',
     btnText: '立即升级', // 按钮上的信息
     isCloseModal: false // 用户是否已经主动关掉modal
