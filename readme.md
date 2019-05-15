@@ -136,3 +136,14 @@ componentWillUnmount() {
 	DeviceEventEmitter.removeListener('DownloadApkProgress');
 }
 ```
+
+## 参数支持说明
+
+| Name | Type | Default | Description |
+| :-: | :-: | :-: | :-: |
+| version | string | 1 | 最新的内部版本号 |
+| versionCode | string | 'v1.0.0' | 最新的外部版本号 |
+| updateInfo | string | '' | 升级内容信息 '1、支持第三方平台业务\|2、展示第三方平台订单取单编码' |
+| promote | number | 0 | 更新方式(1升级，0不升级，2强制升级) |
+| clientUrl | string | '' | 安卓下载地址 |
+| appId | string | '' | 必填 appId |
