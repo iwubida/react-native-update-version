@@ -35,9 +35,9 @@ const isOkVersionCode = code => {
 /**
  * 检查ios appStore 是否有新版本
  */
-const isAppStoreHasNewVersion = async appId => {
+const isAppStoreHasNewVersion = async appleId => {
   if (Platform.OS === 'ios') {
-    await axios(`https://itunes.apple.com/cn/lookup?id=${appId}`).then(({ results }) => {
+    await axios(`https://itunes.apple.com/cn/lookup?id=${appleId}`).then(({ results }) => {
       if (Array.isArray(results) && results.length) {
         const { version } = results[0];
         // 判断版本格式是否正确
@@ -60,7 +60,7 @@ class UpdateVersion extends PureComponent {
     updateInfo: PropTypes.string, // 升级信息 '1、支持第三方平台业务|2、展示第三方平台订单取单编码'
     promote: PropTypes.number, // 更新方式(1升级，0不升级，2强制升级)
     clientUrl: PropTypes.string, // 下载地址
-    appId: PropTypes.oneOfType([PropTypes.string, PropTypes.number]).isRequired // appId
+    appleId: PropTypes.oneOfType([PropTypes.string, PropTypes.number]).isRequired // appleId
   };
 
   static defaultProps = {
@@ -80,7 +80,7 @@ class UpdateVersion extends PureComponent {
   };
 
   static getDerivedStateFromProps(nextProps, preState) {
-    const { version, promote, appId } = nextProps;
+    const { version, promote, appleId } = nextProps;
     const { isVisible, isCloseModal } = preState;
     // 判断条件
     // 1. 当前的版本小于服务器版本
@@ -91,7 +91,7 @@ class UpdateVersion extends PureComponent {
     if (
       currentVersion < version &&
       promote !== 0 &&
-      isAppStoreHasNewVersion(appId) &&
+      isAppStoreHasNewVersion(appleId) &&
       !isVisible &&
       !isCloseModal
     ) {
@@ -124,8 +124,8 @@ class UpdateVersion extends PureComponent {
    * 安卓ios
    */
   updateIOS = () => {
-    const { appId } = this.props;
-    RNUpdateVersionModule.update(`${appId}`);
+    const { appleId } = this.props;
+    RNUpdateVersionModule.update(`${appleId}`);
   };
 
   /**

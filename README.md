@@ -52,34 +52,9 @@ npm install @iwubida/react-native-update-version --save
 自动配置`(推荐)`
 
 ```shell
+react-natvie link react-native-version-number
 react-native link @iwubida/react-native-update-version
 ```
-
-手动配置`(不推荐)`
-
-##### iOS
-
-  1. In XCode, in the project navigator, right click `Libraries` ➜ `Add Files to [your project's name]`
-  2. Go to `node_modules` ➜ `react-native-update-version-module` and add `RNUpdateVersionModule.xcodeproj`
-  3. In XCode, in the project navigator, select your project. Add `libRNUpdateVersionModule.a` to your project's `Build Phases` ➜ `Link Binary With Libraries`
-  4. Run your project (`Cmd+R`)<
-
-##### Android
-
-1. Open up `android/app/src/main/java/[...]/MainActivity.java`
-
-- Add `import com.reactlibrary.RNUpdateVersionModulePackage;` to the imports at the top of the file
-- Add `new RNUpdateVersionModulePackage()` to the list returned by the `getPackages()` method
-
-2. Append the following lines to `android/settings.gradle`:
-   ```
-   include ':react-native-update-version-module'
-   project(':react-native-update-version-module').projectDir = new File(rootProject.projectDir,   '../node_modules/react-native-update-version-module/android')
-   ```
-3. Insert the following lines inside the dependencies block in `android/app/build.gradle`:
-   ```
-     compile project(':react-native-update-version-module')
-   ```
 
 ## 使用
 
@@ -88,9 +63,9 @@ react-native link @iwubida/react-native-update-version
 ```javascript
 import UpdateVersion from '@iwubida/react-native-update-version';
 
-const Demo = ({appId, version, versionCode, promote, clientUrl, updateInfo}) => (
+const Demo = ({appleId, version, versionCode, promote, clientUrl, updateInfo}) => (
   <UpdateVersion
-    appId={appId}
+    appleId={appleId}
     version={version}
     versionCode={versionCode}
     promote={promote}
@@ -99,6 +74,17 @@ const Demo = ({appId, version, versionCode, promote, clientUrl, updateInfo}) => 
   />
 );
 ```
+
+参数支持说明
+
+| Name | Type | Default | Description |
+| :-: | :-: | :-: | :-: |
+| version | string | 1 | 最新的内部版本号 |
+| versionCode | string | 'v1.0.0' | 最新的外部版本号 |
+| updateInfo | string | '' | 升级内容信息 '1、支持第三方平台业务\|2、展示第三方平台订单取单编码' |
+| promote | number | 0 | 更新方式(1升级，0不升级，2强制升级) |
+| clientUrl | string | '' | 安卓下载地址 |
+| appleId | string | '' | 必填 appleId |
 
 #### 不使用提供的升级页面组件，要自己写页面组件的，👇下面方法可提供下载过程。
 
@@ -110,8 +96,8 @@ const { RNUpdateVersionModule } = NativeModules;
 iOS
 
 ```javascript
-// Go to appStroe
-RNUpdateVersionModule.update(`${appId}`);
+// Go to appStore
+RNUpdateVersionModule.update(`${appleId}`);
 ```
 
 Android
@@ -136,14 +122,3 @@ componentWillUnmount() {
   DeviceEventEmitter.removeListener('DownloadApkProgress');
 }
 ```
-
-## 参数支持说明
-
-| Name | Type | Default | Description |
-| :-: | :-: | :-: | :-: |
-| version | string | 1 | 最新的内部版本号 |
-| versionCode | string | 'v1.0.0' | 最新的外部版本号 |
-| updateInfo | string | '' | 升级内容信息 '1、支持第三方平台业务\|2、展示第三方平台订单取单编码' |
-| promote | number | 0 | 更新方式(1升级，0不升级，2强制升级) |
-| clientUrl | string | '' | 安卓下载地址 |
-| appId | string | '' | 必填 appId |
