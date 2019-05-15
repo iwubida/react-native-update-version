@@ -1,12 +1,12 @@
 # @iwubida/react-native-update-version
 
-##### react-native 版本升级提醒,支持Android和IOS
+##### 支持App版本自动升级提醒和升级，提供可选的升级页面组件，同时支持Android和IOS。
 
 [![npm version](https://img.shields.io/npm/v/@iwubida/react-native-update-version.svg?style=flat)](https://www.npmjs.com/package/@iwubida/react-native-update-version)
 
-## 例子：传入最新的内部版本号和外部版本号后该插件可以自动检测出该app是否需要弹出更新提示。
+## 例子：传入最新的`内部版本号`和`外部版本号`后该插件可以自动检测出该App是否需要弹出更新提示。
 
-- 可以使用该插件自带的样式(支持Android和IOS)
+- 可以选择使用该插件自带的样式组件(支持Android和IOS)
 
 <p float="left">
 
@@ -33,25 +33,38 @@
 <img src="/images/ios-downloading.png" height="400px">
 
 
+## 安装
 
-## Getting started
+yarn
 
-`$ npm install react-native-update-version-module --save`
+```shell
+yarn add @iwubida/react-native-update-version
+```
 
-### Mostly automatic installation
+npm install
 
-`$ react-native link react-native-update-version-module`
+```shell
+npm install @iwubida/react-native-update-version --save
+```
 
-### Manual installation
+## 项目配置
 
-#### iOS
+自动配置`(推荐)`
 
-1. In XCode, in the project navigator, right click `Libraries` ➜ `Add Files to [your project's name]`
-2. Go to `node_modules` ➜ `react-native-update-version-module` and add `RNUpdateVersionModule.xcodeproj`
-3. In XCode, in the project navigator, select your project. Add `libRNUpdateVersionModule.a` to your project's `Build Phases` ➜ `Link Binary With Libraries`
-4. Run your project (`Cmd+R`)<
+```shell
+react-native link @iwubida/react-native-update-version
+```
 
-#### Android
+手动配置
+
+##### ios
+
+  1. In XCode, in the project navigator, right click `Libraries` ➜ `Add Files to [your project's name]`
+  2. Go to `node_modules` ➜ `react-native-update-version-module` and add `RNUpdateVersionModule.xcodeproj`
+  3. In XCode, in the project navigator, select your project. Add `libRNUpdateVersionModule.a` to your project's `Build Phases` ➜ `Link Binary With Libraries`
+  4. Run your project (`Cmd+R`)<
+
+##### Android
 
 1. Open up `android/app/src/main/java/[...]/MainActivity.java`
 
@@ -68,33 +81,36 @@
      compile project(':react-native-update-version-module')
    ```
 
-## Usage
+## 使用
+
+#### 不使用升级页面组件
 
 ```javascript
-import RNUpdateVersionModule from 'react-native-update-version-module'
+import { NativeModules } from 'react-native';
+const { RNUpdateVersionModule } = NativeModules;
 ```
 
-1. iOS
+iOS
 
 ```javascript
 // Go to appStroe
-RNUpdateVersionModule.update(`${appId}`)
+RNUpdateVersionModule.update(`${appId}`);
 ```
 
-2. Android
+Android
 
 ```javascript
 // Download apk
-RNUpdateVersionModule.update(`${apkUrl}`)
+RNUpdateVersionModule.update(`${apkUrl}`);
 // Download Progress
 DeviceEventEmitter.addListener('DownloadApkProgress', arg => {
   if (arg.error) {
-    console.log('下载失败')
+    console.log('下载失败');
   } else if (arg.done) {
-    console.log('升级成功')
+    console.log('升级成功');
   } else {
-    const percent = Math.floor((arg.current / arg.total) * 100) || 0
-    console.log(`${percent}%`)
+    const {percent} = arg;
+    console.log(`${percent}%`);
   }
 })
 
