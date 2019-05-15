@@ -75,13 +75,26 @@ class UpdateVersion extends PureComponent {
     status: 'unDownloading', // 状态 'unDownloading' 没在下载中 'downloading'下载中'
     isVisible: true, // 是否显示modal
     title: '升级到新版本',
-    btnText: '立即升级' // 按钮上的信息
+    btnText: '立即升级', // 按钮上的信息
+    isCloseModal: false // 用户是否已经主动关掉modal
   };
 
   static getDerivedStateFromProps(nextProps, preState) {
     const { version, promote, appId } = nextProps;
-    const { isVisible } = preState;
-    if (currentVersion < version && promote !== 0 && isAppStoreHasNewVersion(appId) && !isVisible) {
+    const { isVisible, isCloseModal } = preState;
+    // 判断条件
+    // 1. 当前的版本小于服务器版本
+    // 2. 服务器返回的更新方式不为‘0 不升级’
+    // 3. 如果为ios，则AppStore里需要有升级的版本
+    // 4. modal框不为显示的状态
+    // 5. modal框没被用户关掉
+    if (
+      currentVersion < version &&
+      promote !== 0 &&
+      isAppStoreHasNewVersion(appId) &&
+      !isVisible &&
+      !isCloseModal
+    ) {
       return {
         isVisible: true
       };
@@ -164,6 +177,7 @@ class UpdateVersion extends PureComponent {
    */
   hideModal = () => {
     this.setState({
+      isCloseModal: true,
       isVisible: false
     });
   };
