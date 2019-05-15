@@ -1,4 +1,38 @@
-# react-native-update-version-module
+# @iwubida/react-native-update-version
+
+##### react-native 版本升级提醒,支持Android和IOS
+
+[![npm version](https://img.shields.io/npm/v/@iwubida/react-native-update-version.svg?style=flat)](https://www.npmjs.com/package/@iwubida/react-native-update-version)
+
+## 例子：传入最新的内部版本号和外部版本号后该插件可以自动检测出该app是否需要弹出更新提示。
+
+- 可以使用该插件自带的样式(支持Android和IOS)
+
+<p float="left">
+
+<img src="/images/android-shouye.jpg" height="400px">
+
+<img src="/images/ios.png" height="400px">
+
+</p>
+
+- Android点击`立即升级`后，开始下载过程
+
+<p float="left">
+
+<img src="/images/android-downlonging.jpg" height="400px">
+
+<img src="/images/android-queren.jpg" height="400px">
+
+<img src="/images/android-guocheng.jpg" height="400px">
+
+</p>
+
+- IOS点击`立即升级`后，跳转App Store
+
+<img src="/images/ios-downloading.png" height="400px">
+
+
 
 ## Getting started
 
