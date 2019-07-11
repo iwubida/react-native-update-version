@@ -52,7 +52,7 @@ npm install @iwubida/react-native-update-version --save
 自动配置`(推荐)`
 
 ```shell
-react-natvie link react-native-version-number
+react-native link react-native-version-number
 react-native link @iwubida/react-native-update-version
 ```
 
