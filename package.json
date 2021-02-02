@@ -41,7 +41,7 @@
     "react-test-renderer": "^16.8.6"
   },
   "dependencies": {
-    "axios": "^0.18.0",
+    "axios": "^0.21.1",
     "prop-types": "^15.7.2",
     "react-native-modal": "^10.0.0",
     "react-native-version-number": "^0.3.6"
