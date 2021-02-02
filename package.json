@@ -1,6 +1,6 @@
 {
   "name": "@iwubida/react-native-update-version",
-  "version": "1.0.5",
+  "version": "1.0.6",
   "description": "react-native Update Version",
   "main": "/src/index.js",
   "scripts": {
