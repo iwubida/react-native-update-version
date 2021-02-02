@@ -113,7 +113,7 @@ class UpdateVersion extends PureComponent {
    */
   checkUpdate = () => {
     const { version, promote } = this.props;
-    if (currentVersion < version && promote !== 0 && this.isAppStoreHasNewVersion()) {
+    if (currentVersion < version && promote !== 0 && isAppStoreHasNewVersion()) {
       this.setState({
         isVisible: true
       });
